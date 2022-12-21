@@ -1,0 +1,27 @@
+
+<select id="selectByIds" resultType="com.redu.fund.mysql.entity.ChannelAccountBillEntity">
+    select
+    <include refid="Base_Column_List"/>
+    from channel_account_bill
+    where id in
+    <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+        #{id}
+    </foreach>
+</select>
+
+<select id="countByParam" resultType="java.lang.Integer">
+    select count(*)
+    from channel_account_bill
+    <include refid="condition"></include>
+</select>
+
+<select id="selectByParam" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from withdraw
+    <include refid="condition"></include>
+    order by create_time desc
+    <if test="start != null and length != null">
+        limit #{start},#{length}
+    </if>
+</select>

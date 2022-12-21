@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="testTables" targetRuntime="MyBatis3">
+        <!-- 生成实体类实现序列化-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!-- Lombok插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.LombokPlugin">
+            <!-- @Data 默认开启,同时插件会对子类自动附加@EqualsAndHashCode(callSuper = true)，@ToString(callSuper = true) -->
+            <property name="@Data" value="true"/>
+            <!-- @NoArgsConstructor 和 @AllArgsConstructor 使用规则和Lombok一致 -->
+            <property name="@AllArgsConstructor" value="true"/>
+            <property name="@NoArgsConstructor" value="true"/>
+            <!-- @Builder 必须在 Lombok 版本 >= 1.18.2 的情况下开启，对存在继承关系的类自动替换成@SuperBuilder -->
+            <property name="@Builder" value="true"/>
+        </plugin>
+        <!--方法改名-->
+        <plugin type="template.plugin.MyRenamePkToIdPlugin" />
+        <!--自定义生成属性的注释-->
+        <commentGenerator type="template.plugin.MySQLCommentGenerator">
+            <property name="author" value="pengzhong"/>
+            <property name="dateFormat" value="yyyy/MM/dd"/>
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost/cash?useSSL=false" userId="root"
+                        password="root">
+            <!--表名注释放在类上-->
+            <property name="useInformationSchema" value="true"/>
+        </jdbcConnection>
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+            NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator targetPackage="com.redu.tianzhi.mysql.entity"
+                            targetProject="/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- targetProject:mapper映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="com.redu.tianzhi.mysql.mapper"
+                         targetProject="/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.redu.tianzhi.mysql.mapper"
+                             targetProject="/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <table tableName="app" domainObjectName="AppEntity" mapperName="AppMapper"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
+        </table>
+
+        <table tableName="article" domainObjectName="ArticleEntity" mapperName="ArticleMapper"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
+        </table>
+
+        <table tableName="category" domainObjectName="CategoryEntity" mapperName="CategoryMapper"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
+        </table>
+
+        <table tableName="app_doc_info_rela" domainObjectName="AppDocInfoRelaEntity" mapperName="AppDocInfoRelaMapper"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
+        </table>
+
+        <table tableName="doc_info" domainObjectName="DocInfoEntity" mapperName="DocInfoMapper"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
+        </table>
+
+        <table tableName="doc" domainObjectName="DocEntity" mapperName="DocMapper"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
+        </table>
+
+        <table tableName="doc_field_rela" domainObjectName="DocFieldRelaEntity" mapperName="DocFieldRelaMapper"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
+        </table>
+
+        <table tableName="field" domainObjectName="FieldEntity" mapperName="FieldMapper"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
+        </table>
+
+        <table tableName="plat_permission" domainObjectName="PlatPermissionEntity" mapperName="PlatPermissionMapper"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
+        </table>
+
+        <table tableName="user" domainObjectName="UserEntity" mapperName="UserMapper"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
+        </table>
+
+        <!-- 指定数据库表 -->
+        <!--        <table schema="" tableName="bill">-->
+        <!--            &lt;!&ndash;			驼峰命名&ndash;&gt;-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            &lt;!&ndash;            枚举类映射&ndash;&gt;-->
+        <!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
+        <!--            <columnOverride column="out_id_type" javaType="com.redu.xiezhi.enums.OutIdTypeEnum" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>-->
+        <!--        </table>-->
+    </context>
+</generatorConfiguration>
