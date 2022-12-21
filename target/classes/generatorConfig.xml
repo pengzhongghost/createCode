@@ -26,8 +26,8 @@
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost/cash?useSSL=false" userId="root"
-                        password="root">
+                        connectionURL="jdbc:mysql://192.168.33.103:3307/tianzhi?useSSL=false" userId="root"
+                        password="123456">
             <!--表名注释放在类上-->
             <property name="useInformationSchema" value="true"/>
         </jdbcConnection>

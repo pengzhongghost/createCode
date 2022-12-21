@@ -1,14 +1,19 @@
 
 
 import java.io.*;
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import cn.hutool.json.JSONUtil;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
+import org.mybatis.generator.config.Context;
 import org.mybatis.generator.config.JavaModelGeneratorConfiguration;
+import org.mybatis.generator.config.TableConfiguration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultShellCallback;
+import template.vo.TableVO;
 
 public class GeneratorSqlmap {
 
@@ -50,13 +55,24 @@ public class GeneratorSqlmap {
      * todo 2.自己复制模版生成controller，service，domain层
      */
     public static void generatorService(Configuration config) throws IOException {
-        JavaModelGeneratorConfiguration javaModel = config.getContext("testTables").getJavaModelGeneratorConfiguration();
+        Context context = config.getContext("testTables");
+        JavaModelGeneratorConfiguration javaModel = context.getJavaModelGeneratorConfiguration();
         String targetPackage = javaModel.getTargetPackage();
         String targetProject = javaModel.getTargetProject();
         String targetPath = targetProject + "/" + targetPackage.replace(".mysql.entity", "").replace(".", "/") + "/";
 
         Map<String, String> tableMap = new HashMap<String, String>();
-        tableMap.put("Bill", "账单模块");
+        List<TableConfiguration> testTables = config.getContext("testTables").getTableConfigurations();
+        try {
+            Field introspectedTables = context.getClass().getDeclaredField("introspectedTables");
+            introspectedTables.setAccessible(true);
+            List<TableVO> tables = JSONUtil.toList(JSONUtil.toJsonStr(introspectedTables.get(context)), TableVO.class);
+            for (TableVO table : tables) {
+                tableMap.put(table.getTableConfiguration().getTableName(), table.getRemarks().replace(" 表", "模块"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         for (Map.Entry<String, String> entry : tableMap.entrySet()) {
             replaceTextContent(entry.getKey(), entry.getValue(), targetPath);
         }
