@@ -1,5 +1,8 @@
+import cn.hutool.core.util.StrUtil;
+
 import java.io.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -9,22 +12,28 @@ import java.util.Map;
 public class GeneratorVO {
 
     public static void main(String[] args) throws IOException {
-        //todo 1.生成带注解的VO
-        String srcPath = "/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/java/com/redu/fund/mysql/entity/BillEntity.java";
-        String targetPath = "/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/java/com/redu/fund/vo/BillVO.java";
-        replaceTextContent(srcPath, targetPath, null);
-        //todo 2.处理mapper
-        Map<String, String> replaceMap = new HashMap<String, String>();
-        replaceMap.put("ChannelAccountBill", "Bill");
-        String otherTemplate = getMapperTemplate("/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/resources/templateMapper.txt", replaceMap);
-        srcPath = "/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/java/com/redu/fund/mysql/mapper/BillMapper.java";
-        //名字一样
-        replaceTextContent(srcPath, srcPath, otherTemplate);
-        //todo 3.处理mapper.xml
-        srcPath = "/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/java/com/redu/fund/mysql/mapper/BillMapper.xml";
-        targetPath = "/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/java/com/redu/fund/mysql/mapper/BillMapper.xml";
-        otherTemplate = getMapperTemplate("/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/resources/template.xml", replaceMap);
-        replaceTextContent(srcPath, targetPath, otherTemplate);
+
+
+    }
+
+    public static void handle(List<String> tables) throws Exception {
+        for (String table : tables) {
+            //todo 1.生成带注解的VO
+            String srcPath = "/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/java/com/redu/tianzhi/mysql/entity/BillEntity.java".replace("Bill", table);
+            String targetPath = "/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/java/com/redu/tianzhi/vo/BillVO.java".replace("Bill", table);
+            replaceTextContent(srcPath, targetPath, null);
+            //todo 2.处理mapper
+            Map<String, String> replaceMap = new HashMap<String, String>();
+            replaceMap.put("ChannelAccountBill", table);
+            String otherTemplate = getMapperTemplate("/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/resources/templateMapper.txt", replaceMap);
+            String mapperSrcPath = "/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/java/com/redu/tianzhi/mysql/mapper/BillMapper.java".replace("Bill", table);
+            //名字一样
+            replaceTextContent(mapperSrcPath, mapperSrcPath, otherTemplate);
+            //todo 3.处理mapper.xml
+            String xmlSrcPath = "/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/java/com/redu/tianzhi/mysql/mapper/BillMapper.xml".replace("Bill", table);
+            otherTemplate = getMapperTemplate("/Users/pengzhong/IdeaProjects/all-master/mygen/src/main/resources/template.xml", replaceMap);
+            replaceTextContent(xmlSrcPath, xmlSrcPath, otherTemplate);
+        }
     }
 
     public static String getMapperTemplate(String srcPath, Map<String, String> replaceMap) throws IOException {
@@ -73,8 +82,8 @@ public class GeneratorVO {
                 if (line.contains("Entity")) {
                     line = line.replace("Entity", "VO");
                 }
-            } else if (srcPath.contains("xml")){
-                if (line.contains("</mapper>")){
+            } else if (srcPath.contains("xml")) {
+                if (line.contains("</mapper>")) {
                     tempStream.write(otherTemplate);
                     // 添加换行符
                     tempStream.append(System.getProperty("line.separator"));

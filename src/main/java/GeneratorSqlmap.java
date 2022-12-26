@@ -5,15 +5,14 @@ import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import cn.hutool.json.JSONUtil;
+import cn.hutool.core.util.StrUtil;
 import org.mybatis.generator.api.MyBatisGenerator;
+import org.mybatis.generator.codegen.mybatis3.IntrospectedTableMyBatis3Impl;
 import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.config.JavaModelGeneratorConfiguration;
-import org.mybatis.generator.config.TableConfiguration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultShellCallback;
-import template.vo.TableVO;
 
 public class GeneratorSqlmap {
 
@@ -27,7 +26,8 @@ public class GeneratorSqlmap {
             //todo 1.mybatis-generator生成文件
             Configuration config = generator();
             //todo 2.自己复制模版生成controller，service，domain层
-            generatorService(config);
+            Map<String, String> tableMap = generatorService(config);
+            GeneratorVO.handle(new ArrayList<String>(tableMap.keySet()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,21 +54,20 @@ public class GeneratorSqlmap {
     /**
      * todo 2.自己复制模版生成controller，service，domain层
      */
-    public static void generatorService(Configuration config) throws IOException {
+    public static Map<String, String> generatorService(Configuration config) throws IOException {
         Context context = config.getContext("testTables");
         JavaModelGeneratorConfiguration javaModel = context.getJavaModelGeneratorConfiguration();
         String targetPackage = javaModel.getTargetPackage();
         String targetProject = javaModel.getTargetProject();
         String targetPath = targetProject + "/" + targetPackage.replace(".mysql.entity", "").replace(".", "/") + "/";
-
         Map<String, String> tableMap = new HashMap<String, String>();
-        List<TableConfiguration> testTables = config.getContext("testTables").getTableConfigurations();
         try {
             Field introspectedTables = context.getClass().getDeclaredField("introspectedTables");
             introspectedTables.setAccessible(true);
-            List<TableVO> tables = JSONUtil.toList(JSONUtil.toJsonStr(introspectedTables.get(context)), TableVO.class);
-            for (TableVO table : tables) {
-                tableMap.put(table.getTableConfiguration().getTableName(), table.getRemarks().replace(" 表", "模块"));
+            List<IntrospectedTableMyBatis3Impl> tables = (List<IntrospectedTableMyBatis3Impl>) introspectedTables.get(context);
+            for (IntrospectedTableMyBatis3Impl table : tables) {
+                tableMap.put(StrUtil.upperFirst(StrUtil.toCamelCase(table.getTableConfiguration().getTableName())),
+                        table.getRemarks().replace("表", "模块"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,6 +75,7 @@ public class GeneratorSqlmap {
         for (Map.Entry<String, String> entry : tableMap.entrySet()) {
             replaceTextContent(entry.getKey(), entry.getValue(), targetPath);
         }
+        return tableMap;
     }
 
     public static void replaceTextContent(String targetTable, String targetTableDesc, String targetPath) throws IOException {
@@ -93,12 +93,12 @@ public class GeneratorSqlmap {
         for (String service : serviceList) {
             String UpperService = service.substring(0, 1).toUpperCase() + service.substring(1);
             replaceTextContent(servicePrefix + service + "/" + templateClassName + UpperService + ".java",
-                    targetPath + service + "/" + targetTable + UpperService + ".java", replaceMap, service, targetTableDesc);
+                    targetPath + service + "/" + targetTable + UpperService + ".java", replaceMap, service, targetTable, targetTableDesc);
             if (service.equals("controller")) {
                 continue;
             }
             replaceTextContent(servicePrefix + service + "/impl/" + templateClassName + UpperService + "Impl.java",
-                    targetPath + service + "/impl/" + targetTable + UpperService + "Impl.java", replaceMap, service, targetTableDesc);
+                    targetPath + service + "/impl/" + targetTable + UpperService + "Impl.java", replaceMap, service, targetTable, targetTableDesc);
         }
     }
 
@@ -109,7 +109,7 @@ public class GeneratorSqlmap {
      * @param targetPath
      * @throws IOException
      */
-    public static void replaceTextContent(String srcPath, String targetPath, Map<String, String> replaceMap, String service, String targetTableDesc) throws IOException {
+    public static void replaceTextContent(String srcPath, String targetPath, Map<String, String> replaceMap, String service, String targetTable, String targetTableDesc) throws IOException {
         // 读
         File file = new File(srcPath);
         FileReader in = new FileReader(file);
@@ -132,6 +132,10 @@ public class GeneratorSqlmap {
             //controller层替换注释
             if (service.equals("controller") && line.contains("@Api(tags = ")) {
                 line = line.replace(line.split("@Api\\(tags = ")[1], targetTableDesc + "\")");
+            }
+            //处理路径
+            if (line.contains("//@RequestMapping(\"web")) {
+                line = "//@RequestMapping(\"web/" + StrUtil.toSymbolCase(targetTable, '/') + "\")";
             }
             // 将该行写入内存
             tempStream.write(line);

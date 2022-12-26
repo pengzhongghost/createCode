@@ -58,75 +58,75 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-        <table tableName="app" domainObjectName="AppEntity" mapperName="AppMapper"
+<!--        <table tableName="app" domainObjectName="AppEntity" mapperName="AppMapper"-->
+<!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
+<!--        </table>-->
+
+<!--        <table tableName="article" domainObjectName="ArticleEntity" mapperName="ArticleMapper"-->
+<!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
+<!--        </table>-->
+
+<!--        <table tableName="category" domainObjectName="CategoryEntity" mapperName="CategoryMapper"-->
+<!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
+<!--        </table>-->
+
+<!--        <table tableName="app_doc_info_rela" domainObjectName="AppDocInfoRelaEntity" mapperName="AppDocInfoRelaMapper"-->
+<!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
+<!--        </table>-->
+
+<!--        <table tableName="doc_info" domainObjectName="DocInfoEntity" mapperName="DocInfoMapper"-->
+<!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
+<!--        </table>-->
+
+        <table tableName="error" domainObjectName="ErrorEntity" mapperName="ErrorMapper"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="false"/>
             <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
         </table>
 
-        <table tableName="article" domainObjectName="ArticleEntity" mapperName="ArticleMapper"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
-        </table>
+<!--        <table tableName="doc_field_rela" domainObjectName="DocFieldRelaEntity" mapperName="DocFieldRelaMapper"-->
+<!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
+<!--        </table>-->
 
-        <table tableName="category" domainObjectName="CategoryEntity" mapperName="CategoryMapper"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
-        </table>
+<!--        <table tableName="field" domainObjectName="FieldEntity" mapperName="FieldMapper"-->
+<!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
+<!--        </table>-->
 
-        <table tableName="app_doc_info_rela" domainObjectName="AppDocInfoRelaEntity" mapperName="AppDocInfoRelaMapper"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
-        </table>
+<!--        <table tableName="plat_permission" domainObjectName="PlatPermissionEntity" mapperName="PlatPermissionMapper"-->
+<!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
+<!--        </table>-->
 
-        <table tableName="doc_info" domainObjectName="DocInfoEntity" mapperName="DocInfoMapper"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
-        </table>
-
-        <table tableName="doc" domainObjectName="DocEntity" mapperName="DocMapper"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
-        </table>
-
-        <table tableName="doc_field_rela" domainObjectName="DocFieldRelaEntity" mapperName="DocFieldRelaMapper"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
-        </table>
-
-        <table tableName="field" domainObjectName="FieldEntity" mapperName="FieldMapper"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
-        </table>
-
-        <table tableName="plat_permission" domainObjectName="PlatPermissionEntity" mapperName="PlatPermissionMapper"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
-        </table>
-
-        <table tableName="user" domainObjectName="UserEntity" mapperName="UserMapper"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
-        </table>
+<!--        <table tableName="user" domainObjectName="UserEntity" mapperName="UserMapper"-->
+<!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
+<!--        </table>-->
 
         <!-- 指定数据库表 -->
         <!--        <table schema="" tableName="bill">-->
