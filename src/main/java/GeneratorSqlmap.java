@@ -131,7 +131,7 @@ public class GeneratorSqlmap {
             }
             //controller层替换注释
             if (service.equals("controller") && line.contains("@Api(tags = ")) {
-                line = line.replace(line.split("@Api\\(tags = ")[1], targetTableDesc + "\")");
+                line = line.replace(line.split("@Api\\(tags = ")[1], "\"" + targetTableDesc + "\")");
             }
             //处理路径
             if (line.contains("//@RequestMapping(\"web")) {

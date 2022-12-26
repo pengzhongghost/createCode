@@ -38,7 +38,7 @@
 //    }
 //
 //    @ApiOperation(value = "根据id查询")
-//    @PostMapping("/queryById")
+//    @GetMapping("/queryById")
 //    public ServiceResult<ChannelAccountBillVO> queryById(@RequestParam("id") Long id) {
 //        return channelAccountBillService.queryById(id);
 //    }

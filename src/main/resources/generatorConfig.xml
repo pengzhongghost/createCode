@@ -5,6 +5,11 @@
 
 <generatorConfiguration>
     <context id="testTables" targetRuntime="MyBatis3">
+        <!-- 自动识别数据库关键字，默认false -->
+        <property name="autoDelimitKeywords" value="true" />
+        <!--可以使用``包括字段名，避免字段名与sql保留字冲突报错 -->
+        <property name="beginningDelimiter" value="`" />
+        <property name="endingDelimiter" value="`" />
         <!-- 生成实体类实现序列化-->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
         <!-- Lombok插件 -->
@@ -93,7 +98,14 @@
 <!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
 <!--        </table>-->
 
-        <table tableName="error" domainObjectName="ErrorEntity" mapperName="ErrorMapper"
+        <table tableName="activity" domainObjectName="ActivityEntity" mapperName="ActivityMapper"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
+        </table>
+
+        <table tableName="activity_user_plat_permission_rela" domainObjectName="ActivityUserPlatPermissionRelaEntity" mapperName="ActivityUserPlatPermissionRelaMapper"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="false"/>
