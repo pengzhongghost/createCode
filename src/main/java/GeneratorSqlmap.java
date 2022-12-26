@@ -85,7 +85,7 @@ public class GeneratorSqlmap {
                 targetTable.substring(0, 1).toLowerCase() + targetTable.substring(1));
         //操作日期
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        replaceMap.put("@since 2022/11/14", "@since " + simpleDateFormat.format(new Date()));
+        replaceMap.put("@since 2022/12/14", "@since " + simpleDateFormat.format(new Date()));
         List<String> serviceList = new ArrayList<String>();
         serviceList.add("service");
         serviceList.add("domain");
