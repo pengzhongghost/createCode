@@ -1,4 +1,4 @@
-List<ChannelAccountBillEntity> selectByIds(List<Long> ids);
+List<ChannelAccountBillEntity> selectByIds(@Param("ids") List<Long> ids);
 
 int countByParam(ChannelAccountBillSearchParam param);
 

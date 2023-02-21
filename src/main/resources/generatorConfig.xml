@@ -91,6 +91,13 @@
 <!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
 <!--        </table>-->
 
+<!--        <table tableName="doc" domainObjectName="DocEntity" mapperName="DocMapper"-->
+<!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
+<!--        </table>-->
+
 <!--        <table tableName="doc_info" domainObjectName="DocInfoEntity" mapperName="DocInfoMapper"-->
 <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
 <!--               enableUpdateByExample="false" selectByExampleQueryId="false">-->
@@ -98,19 +105,19 @@
 <!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
 <!--        </table>-->
 
-        <table tableName="activity" domainObjectName="ActivityEntity" mapperName="ActivityMapper"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
-        </table>
+                <table tableName="activity" domainObjectName="ActivityEntity" mapperName="ActivityMapper"
+                       enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+                       enableUpdateByExample="false" selectByExampleQueryId="false">
+                    <property name="useActualColumnNames" value="false"/>
+                    <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
+                </table>
 
-        <table tableName="activity_user_plat_permission_rela" domainObjectName="ActivityUserPlatPermissionRelaEntity" mapperName="ActivityUserPlatPermissionRelaMapper"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>
-        </table>
+<!--        <table tableName="activity_user_plat_permission_rela" domainObjectName="ActivityUserPlatPermissionRelaEntity" mapperName="ActivityUserPlatPermissionRelaMapper"-->
+<!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <columnOverride column="is_delete" javaType="java.lang.Boolean"/>-->
+<!--        </table>-->
 
 <!--        <table tableName="doc_field_rela" domainObjectName="DocFieldRelaEntity" mapperName="DocFieldRelaMapper"-->
 <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->

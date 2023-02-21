@@ -1,5 +1,5 @@
 
-<select id="selectByIds" resultType="com.redu.fund.mysql.entity.ChannelAccountBillEntity">
+<select id="selectByIds" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from channel_account_bill
