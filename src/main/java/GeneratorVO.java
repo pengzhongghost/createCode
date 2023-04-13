@@ -1,9 +1,11 @@
 import cn.hutool.core.util.StrUtil;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author pengzhong
@@ -11,8 +13,10 @@ import java.util.Map;
  */
 public class GeneratorVO {
 
-    public static void main(String[] args) throws IOException {
-
+    public static void main(String[] args) throws Exception {
+        List<String> tables = new ArrayList<String>();
+        tables.add("Product");
+        handle(tables);
 
     }
 
